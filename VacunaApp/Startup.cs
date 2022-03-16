@@ -33,6 +33,7 @@ namespace VacunaApp
             services.AddDbContext<MyPersonaContext>();
             services.AddScoped<IProvinciaServices, ProvinciaService>();
             services.AddScoped<IPersonasServices, PersonaService>();
+            services.AddScoped<IVacunaServices, VacunaService>();
 
 
         }

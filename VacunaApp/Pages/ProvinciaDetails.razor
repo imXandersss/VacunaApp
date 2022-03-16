@@ -1,0 +1,40 @@
+﻿@page "/provinciadetails"
+@inject IProvinciaServices ProvinciaService
+
+<h1>Provincias </h1>
+<EditForm Model="provincia">
+
+    <table class="table">
+        <tr>
+            <td>Nombre</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@provincia.nombreProvincia" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="submit" value="Save" @onclick="saveProvincia" />
+                <input type="button" value="Cancel" />
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+
+
+@code {
+
+    Provincia provincia = new Provincia();
+    protected async Task saveProvincia()
+    {
+        try
+        {
+            await ProvinciaService.saveProvincia(provincia);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+
+
+    }
+
+}

@@ -1,0 +1,40 @@
+﻿@page "/vacunadetails"
+@inject IVacunaServices VacunaService
+
+<h1>Vacuna </h1>
+<EditForm Model="vacuna">
+
+    <table class="table">
+        <tr>
+            <td>Nombre</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@vacuna.nombreVacuna" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="submit" value="Save" @onclick="saveVacuna" />
+                <input type="button" value="Cancel" />
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+
+
+@code {
+
+    Vacuna vacuna = new Vacuna();
+    protected async Task saveVacuna()
+    {
+        try
+        {
+            await VacunaService.saveVacuna(vacuna);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+
+
+    }
+
+}

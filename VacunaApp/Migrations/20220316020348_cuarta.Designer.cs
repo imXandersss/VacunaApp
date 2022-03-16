@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VacunaApp.Models;
 
 namespace VacunaApp.Migrations
 {
     [DbContext(typeof(MyPersonaContext))]
-    partial class MyPersonaContextModelSnapshot : ModelSnapshot
+    [Migration("20220316020348_cuarta")]
+    partial class cuarta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

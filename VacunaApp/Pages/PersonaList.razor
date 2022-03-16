@@ -1,0 +1,55 @@
+﻿@page "/personalist"
+@inject IPersonasServices PersonaService
+
+<div>
+    <a href="/personadetails"><i>Agregar vacunado</i></a>
+</div>
+
+@if (personas == null)
+{
+    <p><em>Loading..</em></p>
+}
+else { 
+
+    <table class="table">
+        <thead>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Vacuna</th>
+            <th>Provincia</th>
+            <th></th>
+        </thead>
+        <tbody>
+            @foreach(var persona in personas)
+                {
+            <tr>
+                <td>@persona.nombre</td>
+                <td>@persona.apellido</td>
+                <td>@persona.cedula</td>
+                <td>@persona.vacunaRecibida</td>
+                <td>@persona.provincia</td>
+                <td><a href="/personadetails/@persona.id">Editar</a></td>
+            </tr>
+                }
+        </tbody>
+    </table>
+}
+
+@code {
+    public IEnumerable<Persona> personas { get; set; }
+    public string mensaje;
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            personas = await PersonaService.getAllPersonas();
+
+        }catch(Exception error)
+        {
+            mensaje = error.Message;
+        }
+    }
+
+
+}

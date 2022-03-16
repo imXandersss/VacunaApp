@@ -96,9 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/personadetails")]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/personadetails/{id:int}")]
-    public partial class PersonaDetails : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/provinciadetails")]
+    public partial class ProvinciaDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -106,58 +105,20 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 105 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaDetails.razor"
+#line 23 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaDetails.razor"
        
 
-    [Parameter]
-    public int id { get; set; }
-
-
-
-    private Persona persona = new Persona();
-    public IEnumerable<Provincia> provincias;
-    public IEnumerable<Vacuna> vacunas;
-    private string mensaje="";
-    protected override async Task OnInitializedAsync()
+    Provincia provincia = new Provincia();
+    protected async Task saveProvincia()
     {
-
-
         try
         {
-            if (id != 0)
-            {
-                persona = await PersonaService.getPersonaDetails(id);
-            }
-
-            vacunas = await VacunaService.getAllVacunas();
-            provincias = await ProvinciaService.getAllProvincias();
+            await ProvinciaService.saveProvincia(provincia);
         }
         catch (Exception e)
         {
             throw e;
         }
-    }
-
-
-    protected async Task savePersona()
-    {
-        if (persona.nombre == null & persona.apellido == null & persona.cedula == null & persona.provincia == null & persona.vacunaRecibida == null)
-        {
-            mensaje = $"No puede haber campos nulos";
-        }
-        else
-        {
-            try
-            {
-                await PersonaService.savePersona(persona);
-                NavigationManager.NavigateTo("/personalist");
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
 
 
     }
@@ -166,10 +127,7 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IVacunaServices VacunaService { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IProvinciaServices ProvinciaService { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonasServices PersonaService { get; set; }
     }
 }
 #pragma warning restore 1591

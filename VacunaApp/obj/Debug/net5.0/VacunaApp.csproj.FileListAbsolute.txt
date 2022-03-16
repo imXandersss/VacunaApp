@@ -86,3 +86,9 @@ C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\VacunaApp.pdb
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\VacunaApp.genruntimeconfig.cache
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\PersonaDetails.razor.g.cs
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\PersonaDetails.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\ProvinciaDetails.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\ProvinciaDetails.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\VacunaDetails.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\VacunaDetails.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\PersonaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\PersonaList.razor.g.cs
