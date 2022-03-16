@@ -1,0 +1,116 @@
+﻿@page "/personadetails"
+@inject IPersonasServices PersonaService
+@inject IProvinciaServices ProvinciaService
+<h1>Insertar Vacunados</h1>
+
+
+<EditForm Model="persona">
+    <table class="table">
+
+
+
+        <tr>
+            <td>Nombre</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.nombre" /></td>
+        </tr>
+
+        <tr>
+            <td>Apellido</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.apellido" /></td>
+        </tr>
+        <tr>
+
+            <td>Cedula</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.cedula" /></td>
+        </tr>
+        <tr>
+
+            <td>Telefono</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.telefono" /></td>
+        </tr>
+        <tr>
+
+            <td>Vacuna</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.vacunaRecibida" /></td>
+        </tr>
+        @if (provincias == null)
+        {
+
+
+            <p><em>Loading..</em></p>
+        }
+        else
+        {
+            <tr>
+                <td>Provincias</td>
+                <td>
+                    <select @bind="persona.provincia">
+
+                        <option>Seleccione la provincia</option>
+                        @foreach (var prov in provincias)
+                        {
+                            <option>@prov.nombreProvincia</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        }
+
+        <tr>
+
+            <td>Fecha de Nacimiento</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.fechaNacimiento" /></td>
+        </tr>
+
+        <tr>
+            <td>Fecha</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.fecha" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input type="submit" value="Save" @onclick="savePersona" />
+                <input type="button" value="Cancel" />
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+
+@code {
+
+
+
+
+
+    private Persona persona = new Persona();
+    public IEnumerable<Provincia> provincias;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            provincias = await ProvinciaService.getAllProvincias();
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+    }
+
+
+    protected async Task savePersona()
+    {
+        try
+        {
+            await PersonaService.savePersona(persona);
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+
+
+    }
+
+}
