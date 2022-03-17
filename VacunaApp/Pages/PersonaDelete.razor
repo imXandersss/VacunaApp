@@ -1,0 +1,66 @@
+﻿@page "/personadelete/{id:int}"
+@inject IPersonasServices PersonaService
+@inject NavigationManager NavigationManager
+
+<p style="color:red; text-align:center">¿Estás seguro de que quieres eliminarlo?</p>
+<EditForm Model="persona">
+
+    <table class="table">
+        <tr>
+            <td>Nombre</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.nombre" /></td>
+        </tr>
+
+        <tr>
+            <td>Apellido</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.apellido" /></td>
+        </tr>
+        <tr>
+
+            <td>Cedula</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.cedula" /></td>
+        </tr>
+        <tr>
+
+            <td>Telefono</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.telefono" /></td>
+        </tr>
+        <tr>
+
+            <td>Fecha de Nacimiento</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.fechaNacimiento" /></td>
+        </tr>
+
+        <tr>
+            <td>Fecha</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@persona.fecha" /></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input class="btn btn-success" type="submit" value="Delete" @onclick="deletePersona" />
+                <a href="/personalist"><input class="btn btn-danger" type="button" value="Cancel" /></a>
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+
+    private Persona persona = new Persona();
+
+    protected override async Task OnInitializedAsync()
+    {
+        persona = await PersonaService.getPersonaDetails(id);
+    }
+
+
+    protected async Task deletePersona()
+    {
+        await PersonaService.deletePersona(id);
+        NavigationManager.NavigateTo("/personalist");
+    }
+}

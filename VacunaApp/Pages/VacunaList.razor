@@ -1,0 +1,50 @@
+﻿@page "/vacunalist"
+@inject IVacunaServices VacunaService
+
+<div>
+    <a href="/vacunadetails"><i>Agregar vacuna</i></a>
+</div>
+
+@if (vacunas == null)
+{
+    <p><em>Loading..</em></p>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+        <th>Nombre</th>
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (var vacuna in vacunas)
+            {
+            <tr>
+                <td>@vacuna.nombreVacuna</td>
+                <td><a href="/vacunadetails/@vacuna.id">Editar</a></td>
+                <td><a href="/vacunadelete/@vacuna.id">Eliminar</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public IEnumerable<Vacuna> vacunas { get; set; }
+    public string mensaje;
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            vacunas = await VacunaService.getAllVacunas();
+
+        }
+        catch (Exception error)
+        {
+            mensaje = error.Message;
+        }
+    }
+
+
+}

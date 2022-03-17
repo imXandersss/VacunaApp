@@ -1,0 +1,45 @@
+﻿@page "/vacunadelete/{id:int}"
+@inject IVacunaServices VacunaService
+@inject NavigationManager NavigationManager
+
+<p style="color:red; text-align:center">¿Estás seguro de que quieres eliminarlo?</p>
+
+<EditForm Model="vacuna">
+
+    <table class="table">
+        <tr>
+            <td>Nombre</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="@vacuna.nombreVacuna" /></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input class="btn btn-success" type="submit" value="Delete" @onclick="deleteVacuna" />
+                <a href="/vacunalist"><input class="btn btn-danger" type="button" value="Cancel" /></a>
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+
+
+@code {
+
+    [Parameter]
+    public int id { get; set; }
+
+    Vacuna vacuna = new Vacuna();
+
+    protected override async Task OnInitializedAsync()
+    {
+        vacuna = await VacunaService.getVacunaDetails(id);
+    }
+
+    public async Task deleteVacuna()
+    {
+        await VacunaService.deleteVacuna(id);
+        NavigationManager.NavigateTo("/vacunalist");
+    }
+
+
+
+}

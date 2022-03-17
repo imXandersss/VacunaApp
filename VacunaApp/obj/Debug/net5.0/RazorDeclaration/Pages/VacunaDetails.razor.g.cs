@@ -97,6 +97,7 @@ using Data;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/vacunadetails")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/vacunadetails/{id:int}")]
     public partial class VacunaDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,20 +106,50 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\VacunaDetails.razor"
+#line 32 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\VacunaDetails.razor"
        
+    [Parameter]
+    public int id { get; set; }
 
     Vacuna vacuna = new Vacuna();
-    protected async Task saveVacuna()
+    private string mensaje = "";
+
+    protected override async Task OnInitializedAsync()
     {
         try
         {
-            await VacunaService.saveVacuna(vacuna);
-        }
-        catch (Exception e)
+            if (id != 0)
+            {
+                vacuna = await VacunaService.getVacunaDetails(id);
+            }
+        }catch(Exception e)
         {
             throw e;
         }
+    }
+
+
+
+    protected async Task saveVacuna()
+    {
+        if (vacuna.nombreVacuna==null)
+        {
+            mensaje = $"No puede haber campos nulos";
+
+        }
+        else
+        {
+            try
+            {
+                await VacunaService.saveVacuna(vacuna);
+                NavigationManager.NavigateTo("/vacunalist");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
 
     }
@@ -128,6 +159,7 @@ using Data;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IVacunaServices VacunaService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

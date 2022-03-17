@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/personalist")]
-    public partial class PersonaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/provinciadelete/{id:int}")]
+    public partial class ProvinciaDelete : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,28 +105,34 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaList.razor"
-       
-    public IEnumerable<Persona> personas { get; set; }
-    public string mensaje;
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            personas = await PersonaService.getAllPersonas();
+#line 25 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaDelete.razor"
+           
 
-        }catch(Exception error)
+        [Parameter]
+        public int id { get; set; }
+
+        Provincia provincia = new Provincia();
+
+        protected override async Task OnInitializedAsync()
         {
-            mensaje = error.Message;
+            provincia = await ProvinciaService.getProvinciaDetails(id);
         }
-    }
+
+        public async Task deleteProvincia()
+        {
+            await ProvinciaService.deleteProvincia(id);
+            NavigationManager.NavigateTo("/provincialist");
+        }
 
 
+
+    
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonasServices PersonaService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IProvinciaServices ProvinciaService { get; set; }
     }
 }
 #pragma warning restore 1591

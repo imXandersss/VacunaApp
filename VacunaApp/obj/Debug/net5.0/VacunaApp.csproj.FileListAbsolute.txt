@@ -92,3 +92,13 @@ C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclarati
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\VacunaDetails.razor.g.cs
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\PersonaList.razor.g.cs
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\PersonaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\ProvinciaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\ProvinciaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\VacunaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\VacunaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\PersonaDelete.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\PersonaDelete.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\ProvinciaDelete.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\ProvinciaDelete.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\VacunaDelete.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\VacunaDelete.razor.g.cs

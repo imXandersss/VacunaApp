@@ -1,8 +1,17 @@
 ﻿@page "/vacunadetails"
+@page "/vacunadetails/{id:int}"
+@inject NavigationManager NavigationManager
 @inject IVacunaServices VacunaService
 
 <h1>Vacuna </h1>
 <EditForm Model="vacuna">
+
+    @if (@mensaje != "")
+    {
+        <div class="alert alert-danger" role="alert">
+            @mensaje
+        </div>
+    }
 
     <table class="table">
         <tr>
@@ -11,8 +20,8 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align:center">
-                <input type="submit" value="Save" @onclick="saveVacuna" />
-                <input type="button" value="Cancel" />
+                <input class="btn btn-success" type="submit" value="Save" @onclick="saveVacuna" />
+                <a href="/vacunalist"><input class="btn btn-danger" type="button" value="Cancel" /></a>
             </td>
         </tr>
     </table>
@@ -21,18 +30,48 @@
 
 
 @code {
+    [Parameter]
+    public int id { get; set; }
 
     Vacuna vacuna = new Vacuna();
-    protected async Task saveVacuna()
+    private string mensaje = "";
+
+    protected override async Task OnInitializedAsync()
     {
         try
         {
-            await VacunaService.saveVacuna(vacuna);
-        }
-        catch (Exception e)
+            if (id != 0)
+            {
+                vacuna = await VacunaService.getVacunaDetails(id);
+            }
+        }catch(Exception e)
         {
             throw e;
         }
+    }
+
+
+
+    protected async Task saveVacuna()
+    {
+        if (vacuna.nombreVacuna==null)
+        {
+            mensaje = $"No puede haber campos nulos";
+
+        }
+        else
+        {
+            try
+            {
+                await VacunaService.saveVacuna(vacuna);
+                NavigationManager.NavigateTo("/vacunalist");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
 
     }

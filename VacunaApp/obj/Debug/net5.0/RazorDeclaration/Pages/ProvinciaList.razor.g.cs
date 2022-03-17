@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/personalist")]
-    public partial class PersonaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/provincialist")]
+    public partial class ProvinciaList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,17 +105,18 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaList.razor"
+#line 35 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaList.razor"
        
-    public IEnumerable<Persona> personas { get; set; }
+    public IEnumerable<Provincia> provincias { get; set; }
     public string mensaje;
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            personas = await PersonaService.getAllPersonas();
+            provincias = await ProvinciaService.getAllProvincias();
 
-        }catch(Exception error)
+        }
+        catch (Exception error)
         {
             mensaje = error.Message;
         }
@@ -126,7 +127,7 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonasServices PersonaService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IProvinciaServices ProvinciaService { get; set; }
     }
 }
 #pragma warning restore 1591

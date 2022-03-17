@@ -97,6 +97,7 @@ using Data;
 #line hidden
 #nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/provinciadetails")]
+    [Microsoft.AspNetCore.Components.RouteAttribute("/provinciadetails/{id:int}")]
     public partial class ProvinciaDetails : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
@@ -105,20 +106,49 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaDetails.razor"
+#line 24 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaDetails.razor"
        
 
+    [Parameter]
+    public int id { get; set; }
+
     Provincia provincia = new Provincia();
-    protected async Task saveProvincia()
+    private string mensaje = "";
+
+    protected override async Task OnInitializedAsync()
     {
         try
         {
-            await ProvinciaService.saveProvincia(provincia);
-        }
-        catch (Exception e)
+            if (id != 0)
+            {
+                provincia = await ProvinciaService.getProvinciaDetails(id);
+            }
+        }catch(Exception e)
         {
             throw e;
         }
+    }
+
+    protected async Task saveProvincia()
+    {
+
+        if (provincia.nombreProvincia == null)
+        {
+            mensaje = $"No puede haber campos nulos";
+        }
+        else
+        {
+            try
+            {
+                await ProvinciaService.saveProvincia(provincia);
+                NavigationManager.NavigateTo("/provincialist");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
 
     }
@@ -127,6 +157,7 @@ using Data;
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IProvinciaServices ProvinciaService { get; set; }
     }
 }

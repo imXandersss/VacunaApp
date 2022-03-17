@@ -1,0 +1,52 @@
+﻿@page "/provincialist"
+@inject IProvinciaServices ProvinciaService
+
+<div>
+    <a href="/provinciadetails"><i>Agregar provincia</i></a>
+</div>
+
+@if (provincias == null)
+{
+    <p><em>Loading..</em></p>
+}
+else
+{
+
+<table class="table">
+    <thead>
+    <th>Nombre</th>
+    <th></th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (var provincia in provincias)
+        {
+            <tr>
+                <td>@provincia.nombreProvincia</td>
+                <td><a href="/provinciadetails/@provincia.id">Editar</a></td>
+                <td><a href="/provinciadelete/@provincia.id">Eliminar</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+@code {
+    public IEnumerable<Provincia> provincias { get; set; }
+    public string mensaje;
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            provincias = await ProvinciaService.getAllProvincias();
+
+        }
+        catch (Exception error)
+        {
+            mensaje = error.Message;
+        }
+    }
+
+
+}

@@ -1,0 +1,45 @@
+﻿@page "/provinciadelete/{id:int}"
+@inject IProvinciaServices ProvinciaService
+@inject NavigationManager NavigationManager
+
+    <p style="color:red; text-align:center">¿Estás seguro de que quieres eliminarlo?</p>
+
+    <EditForm Model="provincia">
+
+        <table class="table">
+            <tr>
+                <td>Nombre</td>
+                <td><input class="form-control col-sm-4" type="text" @bind="@provincia.nombreProvincia" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center">
+                    <input class="btn btn-success" type="submit" value="Delete" @onclick="deleteProvincia" />
+                    <a href="/provincialist"><input class="btn btn-danger" type="button" value="Cancel" /></a>
+                </td>
+            </tr>
+        </table>
+
+    </EditForm>
+
+
+    @code {
+
+        [Parameter]
+        public int id { get; set; }
+
+        Provincia provincia = new Provincia();
+
+        protected override async Task OnInitializedAsync()
+        {
+            provincia = await ProvinciaService.getProvinciaDetails(id);
+        }
+
+        public async Task deleteProvincia()
+        {
+            await ProvinciaService.deleteProvincia(id);
+            NavigationManager.NavigateTo("/provincialist");
+        }
+
+
+
+    }

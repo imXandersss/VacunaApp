@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/personalist")]
-    public partial class PersonaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/personadelete/{id:int}")]
+    public partial class PersonaDelete : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,27 +105,29 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaList.razor"
+#line 49 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaDelete.razor"
        
-    public IEnumerable<Persona> personas { get; set; }
-    public string mensaje;
+    [Parameter]
+    public int id { get; set; }
+
+    private Persona persona = new Persona();
+
     protected override async Task OnInitializedAsync()
     {
-        try
-        {
-            personas = await PersonaService.getAllPersonas();
-
-        }catch(Exception error)
-        {
-            mensaje = error.Message;
-        }
+        persona = await PersonaService.getPersonaDetails(id);
     }
 
 
+    protected async Task deletePersona()
+    {
+        await PersonaService.deletePersona(id);
+        NavigationManager.NavigateTo("/personalist");
+    }
 
 #line default
 #line hidden
 #nullable disable
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonasServices PersonaService { get; set; }
     }
 }

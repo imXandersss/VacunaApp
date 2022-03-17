@@ -1,6 +1,7 @@
 ﻿@page "/provinciadetails"
+@page "/provinciadetails/{id:int}"
 @inject IProvinciaServices ProvinciaService
-
+@inject NavigationManager NavigationManager
 <h1>Provincias </h1>
 <EditForm Model="provincia">
 
@@ -11,8 +12,8 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align:center">
-                <input type="submit" value="Save" @onclick="saveProvincia" />
-                <input type="button" value="Cancel" />
+                <input class="btn btn-success" type="submit" value="Save" @onclick="saveProvincia" />
+                <a href="/provincialist"><input class="btn btn-danger" type="button" value="Cancel" /></a>
             </td>
         </tr>
     </table>
@@ -22,17 +23,46 @@
 
 @code {
 
+    [Parameter]
+    public int id { get; set; }
+
     Provincia provincia = new Provincia();
-    protected async Task saveProvincia()
+    private string mensaje = "";
+
+    protected override async Task OnInitializedAsync()
     {
         try
         {
-            await ProvinciaService.saveProvincia(provincia);
-        }
-        catch (Exception e)
+            if (id != 0)
+            {
+                provincia = await ProvinciaService.getProvinciaDetails(id);
+            }
+        }catch(Exception e)
         {
             throw e;
         }
+    }
+
+    protected async Task saveProvincia()
+    {
+
+        if (provincia.nombreProvincia == null)
+        {
+            mensaje = $"No puede haber campos nulos";
+        }
+        else
+        {
+            try
+            {
+                await ProvinciaService.saveProvincia(provincia);
+                NavigationManager.NavigateTo("/provincialist");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
 
 
     }

@@ -11,18 +11,19 @@
 }
 else { 
 
-    <table class="table">
-        <thead>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Cedula</th>
-            <th>Vacuna</th>
-            <th>Provincia</th>
-            <th></th>
-        </thead>
-        <tbody>
-            @foreach(var persona in personas)
-                {
+<table class="table">
+    <thead>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Cedula</th>
+    <th>Vacuna</th>
+    <th>Provincia</th>
+    <th></th>
+    <th></th>
+    </thead>
+    <tbody>
+        @foreach (var persona in personas)
+        {
             <tr>
                 <td>@persona.nombre</td>
                 <td>@persona.apellido</td>
@@ -30,10 +31,11 @@ else {
                 <td>@persona.vacunaRecibida</td>
                 <td>@persona.provincia</td>
                 <td><a href="/personadetails/@persona.id">Editar</a></td>
+                <td><a href="/personadelete/@persona.id">Eliminar</a></td>
             </tr>
-                }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 }
 
 @code {
