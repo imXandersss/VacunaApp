@@ -19,6 +19,7 @@ namespace VacunaApp.Data
         Task<bool> deletePersona(int id);
 
         Task<bool> savePersona(Persona persona);
+        Task<IEnumerable<Persona>> getByProvincias(string provincia);
 
     }
 }

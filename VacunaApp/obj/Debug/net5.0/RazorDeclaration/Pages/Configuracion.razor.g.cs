@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/vacunalist")]
-    public partial class VacunaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/configuracion")]
+    public partial class Configuracion : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,29 +105,21 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\VacunaList.razor"
+#line 9 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\Configuracion.razor"
        
-    public IEnumerable<Vacuna> vacunas { get; set; }
-    public string mensaje;
-    protected override async Task OnInitializedAsync()
+    public void confVacuna()
     {
-        try
-        {
-            vacunas = await VacunaService.getAllVacunas();
-
-        }
-        catch (Exception error)
-        {
-            mensaje = error.Message;
-        }
+        NavigationManager.NavigateTo("/vacunalist");
     }
-
-
+    public void confProvincia()
+    {
+        NavigationManager.NavigateTo("/provincialist");
+    }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IVacunaServices VacunaService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
     }
 }
 #pragma warning restore 1591

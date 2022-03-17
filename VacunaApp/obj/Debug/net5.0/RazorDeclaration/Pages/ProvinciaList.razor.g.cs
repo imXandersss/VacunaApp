@@ -105,7 +105,7 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaList.razor"
+#line 37 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ProvinciaList.razor"
        
     public IEnumerable<Provincia> provincias { get; set; }
     public string mensaje;

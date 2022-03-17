@@ -106,18 +106,26 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 105 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaDetails.razor"
+#line 111 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaDetails.razor"
        
 
     [Parameter]
     public int id { get; set; }
 
+    MyPersonaContext db = new MyPersonaContext();
 
+   
 
+    int _id;
     private Persona persona = new Persona();
     public IEnumerable<Provincia> provincias;
     public IEnumerable<Vacuna> vacunas;
-    private string mensaje="";
+    private string mensaje = "";
+
+
+
+
+
     protected override async Task OnInitializedAsync()
     {
 
@@ -141,22 +149,27 @@ using Data;
 
     protected async Task savePersona()
     {
-        if (persona.nombre == null & persona.apellido == null & persona.cedula == null & persona.provincia == null & persona.vacunaRecibida == null)
-        {
-            mensaje = $"No puede haber campos nulos";
-        }
-        else
-        {
-            try
+       
+
+            if (persona.nombre == null || persona.apellido == null || persona.cedula == null || persona.provincia == null || persona.vacunaRecibida == null)
             {
-                await PersonaService.savePersona(persona);
-                NavigationManager.NavigateTo("/personalist");
+                mensaje = $"No puede haber campos nulos";
             }
-            catch (Exception e)
+            else
             {
-                throw e;
-            }
+                try
+                {
+                    await PersonaService.savePersona(persona);
+                    NavigationManager.NavigateTo("/personalist");
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
         }
+       
+
+
 
 
 

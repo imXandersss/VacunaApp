@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/vacunalist")]
-    public partial class VacunaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/zodiacolist")]
+    public partial class ZodiacoList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,29 +105,90 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\VacunaList.razor"
+#line 63 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ZodiacoList.razor"
        
-    public IEnumerable<Vacuna> vacunas { get; set; }
-    public string mensaje;
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            vacunas = await VacunaService.getAllVacunas();
+    MyPersonaContext db = new MyPersonaContext();
+    List<Persona> lstPersonas = new List<Persona>();
+    DateTime fecha = new DateTime();
+    string zodiaco;
+    int capri, acua, pis, ari, tau, gem, can, leo, vir, lib, esc, sag;
+    List<string> signo = new List<string>() { "Capricornio", "Acuario", "Piscis", "Aries", "Tauro", "Geminis", "Cancer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario" };
+    List<int> fechas = new List<int>() { 20, 19, 20, 20, 21, 21, 22, 22, 22, 22, 22, 21 };
 
-        }
-        catch (Exception error)
+
+    protected override void OnInitialized()
+    {
+        lstPersonas = db.Personas.ToList();
+        foreach (var i in lstPersonas)
         {
-            mensaje = error.Message;
+            fecha = Convert.ToDateTime(i.fechaNacimiento);
+
+            int dia = fecha.Day;
+            int mes = fecha.Month;
+            int year = fecha.Year;
+
+            mes = mes - 1;
+            if (dia > fechas[mes])
+            {
+                mes = mes + 1;
+            }
+            zodiaco = signo[mes];
+
+            if (zodiaco == "Capricornio")
+            {
+                capri++;
+            }
+            else if (zodiaco == "Acuario")
+            {
+                acua++;
+            }
+            else if (zodiaco == "Piscis")
+            {
+                pis++;
+            }
+            else if (zodiaco == "Aries")
+            {
+                ari++;
+            }
+            else if (zodiaco == "Tauro")
+            {
+                tau++;
+            }
+            else if (zodiaco == "Geminis")
+            {
+                gem++;
+            }
+            else if (zodiaco == "Cancer")
+            {
+                can++;
+            }
+            else if (zodiaco == "Leo")
+            {
+                leo++;
+            }
+            else if (zodiaco == "Virgo")
+            {
+                vir++;
+            }
+            else if (zodiaco == "Libra")
+            {
+                lib++;
+            }
+            else if (zodiaco == "Escorpio")
+            {
+                esc++;
+            }
+            else if (zodiaco == "Sagitario")
+            {
+                sag++;
+            }
         }
     }
-
 
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IVacunaServices VacunaService { get; set; }
     }
 }
 #pragma warning restore 1591

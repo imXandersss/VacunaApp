@@ -19,6 +19,8 @@ namespace VacunaApp.Models
         public string provincia{ get; set; }
 
         public string vacunaRecibida { get; set; }
+
+        public string? vacunaRecibidaDos { get; set; }
         public DateTime fecha{ get; set; }
         public DateTime fechaNacimiento { get; set; }
     }

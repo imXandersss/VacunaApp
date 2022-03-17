@@ -36,6 +36,7 @@ namespace VacunaApp.Data
 
         public async Task<Persona> getPersonaDetails(int id)
         {
+
             return await _personaContext.Personas.FindAsync(id);
         }
 
@@ -51,6 +52,15 @@ namespace VacunaApp.Data
                 return await updatePersona(persona);
             else
                 return await insertPersona(persona);
+        }
+
+        public async Task<IEnumerable<Persona>> getByProvincias(string provincia)
+        {
+                var query = _personaContext.Personas
+                    .Where(p => p.provincia == provincia)
+                    .ToListAsync();
+            return await query;
+            
         }
 
         public async Task<bool> updatePersona(Persona persona)

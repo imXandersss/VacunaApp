@@ -3,13 +3,14 @@
 
 <div>
     <a href="/personadetails"><i>Agregar vacunado</i></a>
+
 </div>
 
 @if (personas == null)
 {
     <p><em>Loading..</em></p>
 }
-else { 
+else {
 
 <table class="table">
     <thead>
@@ -22,18 +23,20 @@ else {
     <th></th>
     </thead>
     <tbody>
-        @foreach (var persona in personas)
-        {
-            <tr>
-                <td>@persona.nombre</td>
-                <td>@persona.apellido</td>
-                <td>@persona.cedula</td>
-                <td>@persona.vacunaRecibida</td>
-                <td>@persona.provincia</td>
-                <td><a href="/personadetails/@persona.id">Editar</a></td>
-                <td><a href="/personadelete/@persona.id">Eliminar</a></td>
-            </tr>
-        }
+       
+            @foreach (var persona in personas)
+            {
+        <tr>
+            <td>@persona.nombre</td>
+            <td>@persona.apellido</td>
+            <td>@persona.cedula</td>
+            <td>@persona.vacunaRecibida</td>
+            <td>@persona.provincia</td>
+            <td><a href="/personadetails/@persona.id">Editar</a></td>
+            <td><a href="/personadelete/@persona.id">Eliminar</a></td>
+        </tr>
+            }
+        
     </tbody>
 </table>
 }

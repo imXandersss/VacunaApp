@@ -104,7 +104,7 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Shared\NavMenu.razor"
+#line 49 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

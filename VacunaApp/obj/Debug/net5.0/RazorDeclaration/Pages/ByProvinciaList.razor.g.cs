@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/vacunalist")]
-    public partial class VacunaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/byprovincialist")]
+    public partial class ByProvinciaList : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,29 +105,66 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\VacunaList.razor"
+#line 58 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\ByProvinciaList.razor"
        
-    public IEnumerable<Vacuna> vacunas { get; set; }
-    public string mensaje;
-    protected override async Task OnInitializedAsync()
+
+    private Persona persona = new Persona();
+    public IEnumerable<Provincia> provincias;
+    public IEnumerable<Persona> personas;
+    public IEnumerable<Vacuna> vacunas;
+    private string mensaje = "";
+
+    private List<Persona> lstPersonas = new List<Persona>()
+;
+    private string parametro;
+
+    public List<Persona> Next()
     {
+        MyPersonaContext db = new MyPersonaContext();
         try
         {
-            vacunas = await VacunaService.getAllVacunas();
+            if (parametro != null)
+            {
+                var query = from p in db.Personas
+                            where p.provincia == parametro
+                            select p;
+                foreach (var pro in query)
+                {
+                    lstPersonas.Add(pro);
+                }
+                return lstPersonas;
+
+            }
+            return lstPersonas;
+
 
         }
-        catch (Exception error)
+        catch (Exception e)
         {
-            mensaje = error.Message;
+            throw e;
         }
+
     }
 
 
 
+    protected override async Task OnInitializedAsync()
+    {
+
+
+
+        provincias = await ProvinciaService.getAllProvincias();
+
+
+    }
+
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IVacunaServices VacunaService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonasServices PersonasService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IProvinciaServices ProvinciaService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IPersonasServices PersonaService { get; set; }
     }
 }
 #pragma warning restore 1591

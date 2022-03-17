@@ -1,0 +1,56 @@
+﻿@page "/graficovacuna"
+
+
+<table class="table table-bordered">
+    <thead>
+            <th>Vacuna</th>
+            <th>Cantidad</th>
+    </thead>
+            <tbody>
+                @foreach (var i in lstResultados)
+                {
+                    <tr>
+
+                        <td>@i.Vacuna</td>
+
+                        <td>@i.Cantida</td>
+                    </tr>
+
+                        }
+
+                </tbody>
+    </table>
+
+@code {
+    public class Data {
+        public string Vacuna { get; set; }
+        public int Cantida { get; set; }
+    }
+
+    public List<Data> lstResultados = new List<Data>();
+
+    protected override void OnInitialized()
+    {
+        getDatos();
+    }
+
+
+    public List<Data> getDatos()
+    {
+        MyPersonaContext db=new MyPersonaContext();
+        var query = from vacunas in db.Personas
+                    group vacunas by vacunas.vacunaRecibida
+            into totals
+                    select new
+                    {
+                        vacuna = totals.Key,
+                        total = totals.Count()
+                    };
+
+        foreach (var i in query)
+        {
+            lstResultados.Add(new Data { Vacuna = i.vacuna, Cantida = i.total });
+        }
+        return lstResultados;
+    }
+}

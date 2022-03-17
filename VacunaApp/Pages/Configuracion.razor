@@ -1,0 +1,18 @@
+﻿@page "/configuracion"
+@inject NavigationManager NavigationManager
+
+
+<button @onclick="confVacuna">Configurar Vacunas</button>
+<button @onclick="confProvincia">Configurar Provincias</button>
+
+
+@code {
+    public void confVacuna()
+    {
+        NavigationManager.NavigateTo("/vacunalist");
+    }
+    public void confProvincia()
+    {
+        NavigationManager.NavigateTo("/provincialist");
+    }
+}

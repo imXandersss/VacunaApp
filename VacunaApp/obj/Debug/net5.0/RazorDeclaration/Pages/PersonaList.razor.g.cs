@@ -105,7 +105,7 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 41 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaList.razor"
+#line 44 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\PersonaList.razor"
        
     public IEnumerable<Persona> personas { get; set; }
     public string mensaje;

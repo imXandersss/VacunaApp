@@ -1,0 +1,109 @@
+﻿@page "/byprovincialist"
+@inject IPersonasServices PersonaService
+@inject IProvinciaServices ProvinciaService
+@inject IPersonasServices PersonasService
+@inject NavigationManager NavigationManager
+@if (provincias == null)
+{
+
+    <p><em>Loading..</em></p>
+}
+else
+{
+    <tr>
+        <td>Provincias</td>
+        <td>
+            <select class="form-control" @bind="parametro">
+
+                <option>Seleccione la provincia</option>
+                @foreach (var provincia in provincias)
+                {
+                    <option>@provincia.nombreProvincia</option>
+                }
+            </select>
+
+        </td>
+        </tr>
+    <div>
+        <table class="table">
+            <thead>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Vacuna</th>
+            </thead>
+            <tbody>
+                @foreach (var i in Next())
+                {
+                    <tr>
+
+                        <td>@i.nombre</td>
+                        <td>@i.apellido</td>
+                        <td>@i.cedula</td>
+                        <td>@i.vacunaRecibida</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<table class="table">
+
+</table>
+
+
+
+@code {
+
+    private Persona persona = new Persona();
+    public IEnumerable<Provincia> provincias;
+    public IEnumerable<Persona> personas;
+    public IEnumerable<Vacuna> vacunas;
+    private string mensaje = "";
+
+    private List<Persona> lstPersonas = new List<Persona>()
+;
+    private string parametro;
+
+    public List<Persona> Next()
+    {
+        MyPersonaContext db = new MyPersonaContext();
+        try
+        {
+            if (parametro != null)
+            {
+                var query = from p in db.Personas
+                            where p.provincia == parametro
+                            select p;
+                foreach (var pro in query)
+                {
+                    lstPersonas.Add(pro);
+                }
+                return lstPersonas;
+
+            }
+            return lstPersonas;
+
+
+        }
+        catch (Exception e)
+        {
+            throw e;
+        }
+
+    }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+
+
+        provincias = await ProvinciaService.getAllProvincias();
+
+
+    }
+}

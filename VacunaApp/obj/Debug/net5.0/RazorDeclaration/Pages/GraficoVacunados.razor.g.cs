@@ -96,8 +96,8 @@ using Data;
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/vacunalist")]
-    public partial class VacunaList : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/graficovacuna")]
+    public partial class GraficoVacunados : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -105,29 +105,43 @@ using Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\VacunaList.razor"
+#line 24 "C:\Users\xander\source\repos\VacunaApp\VacunaApp\Pages\GraficoVacunados.razor"
        
-    public IEnumerable<Vacuna> vacunas { get; set; }
-    public string mensaje;
-    protected override async Task OnInitializedAsync()
-    {
-        try
-        {
-            vacunas = await VacunaService.getAllVacunas();
+    public class Data {
+        public string Vacuna { get; set; }
+        public int Cantida { get; set; }
+    }
 
-        }
-        catch (Exception error)
-        {
-            mensaje = error.Message;
-        }
+    public List<Data> lstResultados = new List<Data>();
+
+    protected override void OnInitialized()
+    {
+        getDatos();
     }
 
 
+    public List<Data> getDatos()
+    {
+        MyPersonaContext db=new MyPersonaContext();
+        var query = from vacunas in db.Personas
+                    group vacunas by vacunas.vacunaRecibida
+            into totals
+                    select new
+                    {
+                        vacuna = totals.Key,
+                        total = totals.Count()
+                    };
+
+        foreach (var i in query)
+        {
+            lstResultados.Add(new Data { Vacuna = i.vacuna, Cantida = i.total });
+        }
+        return lstResultados;
+    }
 
 #line default
 #line hidden
 #nullable disable
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IVacunaServices VacunaService { get; set; }
     }
 }
 #pragma warning restore 1591

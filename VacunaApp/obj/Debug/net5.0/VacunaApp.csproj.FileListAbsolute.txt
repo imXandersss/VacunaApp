@@ -102,3 +102,11 @@ C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclarati
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\ProvinciaDelete.razor.g.cs
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\VacunaDelete.razor.g.cs
 C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\VacunaDelete.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\ByProvinciaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\ByProvinciaList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\GraficoVacunados.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\GraficoVacunados.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\ZodiacoList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\ZodiacoList.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\RazorDeclaration\Pages\Configuracion.razor.g.cs
+C:\Users\xander\source\repos\VacunaApp\VacunaApp\obj\Debug\net5.0\Razor\Pages\Configuracion.razor.g.cs
